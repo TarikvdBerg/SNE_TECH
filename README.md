@@ -1,1 +1,1 @@
-# SNE_TECH
+# SNE-Tech
