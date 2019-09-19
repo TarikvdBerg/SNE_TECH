@@ -77,7 +77,8 @@ typings/
 
 # gatsby files
 .cache/
-public
+# fuck you
+#public
 
 # vuepress build output
 .vuepress/dist
