@@ -4,6 +4,15 @@ var expressWs = require('express-ws')(app);
 
 var clients = {};
 
+var sendClientList = (websocket) => {
+    websocket.send(JSON.stringify({
+        event: "client_list",
+        data: {
+            clients: Object.keys(clients),
+        },
+    }));
+};
+
 var onMessage = (websocket, request) => (message) => {
     try {
         var data = JSON.parse(message);
@@ -29,12 +38,7 @@ var onMessage = (websocket, request) => (message) => {
                 }));
                 break;
             case "client_list":
-                websocket.send(JSON.stringify({
-                    event: "client_list",
-                    data: {
-                        clients: Object.keys(clients),
-                    },
-                }));
+                sendClientList(websocket);
                 break;
             default:
                 websocket.send(JSON.stringify({
