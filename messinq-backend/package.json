@@ -1,0 +1,20 @@
+{
+  "name": "messinq-backend",
+  "version": "0.0.1",
+  "description": "MessinQ secure messaging backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SNE-Tech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TarikvdBerg/SNE_TECH/issues"
+  },
+  "homepage": "https://github.com/TarikvdBerg/SNE_TECH#readme",
+  "keywords": [],
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-ws": "^4.0.0"
+  }
+}
