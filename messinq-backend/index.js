@@ -32,7 +32,7 @@ var onMessage = (websocket, request) => (message) => {
                 websocket.send(JSON.stringify({
                     event: "client_list",
                     data: {
-                        clients: clients.keys(),
+                        clients: Object.keys(clients),
                     },
                 }));
                 break;
