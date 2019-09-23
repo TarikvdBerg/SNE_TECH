@@ -4,9 +4,12 @@ window.onload = (event) => {
 
     var clientsList = document.querySelector("#clients");
     var dialog = document.querySelector("#messages_container");
+	var usernameGedeelte = document.querySelector("#username_container");
     var messageForm = document.querySelector("#message_form");
     var messageText = document.querySelector("#message_text");
     var messages = {};
+	
+	usernameGedeelte.innerHTML = `<p>Logged in as ` + username + `</p>`;
 
     var updateMessageWindow = () => {
         const selectedUser = clientsList.options[clientsList.selectedIndex].value;
@@ -109,6 +112,7 @@ window.onload = (event) => {
 
                     break;
                 case "client_list":
+					// TODO current user on clientside
                     var clients = data.data.clients;
                     var clientsOptions = "<option value=''>Select user</option>";
                     clients.forEach(client => {
