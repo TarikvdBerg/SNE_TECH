@@ -15,7 +15,8 @@ docker build -t messinq-backend .
 ## Frontend start
 ```
 cd messinq-frontend\
-yarn
+yarn install
+yarn start
 ```
 
 ### Build docker image
