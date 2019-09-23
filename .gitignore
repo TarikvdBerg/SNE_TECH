@@ -91,3 +91,6 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# NodeJS temp files
+messinq-backend/package-lock.json
