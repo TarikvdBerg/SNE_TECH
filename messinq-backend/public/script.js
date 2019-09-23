@@ -34,7 +34,10 @@ window.onload = (event) => {
         if (recipient === "") {
             alert("Please select the user you want to send your message to.");
             return false;
-        }
+        } else if (recipient === username) {
+			alert("You cannot send a message to yourself");
+            return false;
+		}
 
         socket.send(JSON.stringify({
             event: "message",
