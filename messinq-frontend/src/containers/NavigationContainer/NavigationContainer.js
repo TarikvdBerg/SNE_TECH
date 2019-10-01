@@ -1,5 +1,5 @@
-import React from 'react';
-import clsx from 'clsx';
+import React from "react";
+import clsx from "clsx";
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -12,22 +12,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import ImportContactsIcon from '@material-ui/icons/ImportContacts';
-import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import SendIcon from '@material-ui/icons/Send';
-
-
-const menuItems = [
-    { title: "Contacts", icon: ImportContactsIcon },
-    { title: "Profile", icon: AccountCircleIcon },
-];
-
-const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -89,7 +73,9 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function App() {
+const drawerWidth = 240;
+
+export default function NavigationContainer(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -141,50 +127,19 @@ export default function App() {
             >
                 <div className={classes.toolbar}>
                     <Typography>MessinQ</Typography>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton onClick={ handleDrawerClose }>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </div>
 
                 <Divider />
                 <List>
-                    {menuItems.map(({ title, icon: Icon }, index) => (
-                        <ListItem button key={title}>
-                            <ListItemIcon><Icon /></ListItemIcon>
-                            <ListItemText primary={title} />
-                        </ListItem>
-                    ))}
+                    {
+                        props.menuItems.map(item => props.menuItemFactory(item))
+                    }
                 </List>
             </Drawer>
-            <main className={classes.content}>
-                <div className={classes.toolbar} />
-                <Typography paragraph >
-                   <h1>SNE-TECH</h1>
-                </Typography>
-                <Grid
-                    container
-                    direction="row"
-                    justify="flex-start"
-                    alignItems="flex-end"
-                >
-                <Grid item xs={10}>
-                    <form className={classes.container} noValidate autoComplete="off">
-                    <TextField
-                        id="filled-bare"
-                        className={classes.textField}
-                        placeholder="Say something!"
-                        margin="normal"
-                        variant="filled"
-                        inputProps={{ 'aria-label': 'bare' }}
-                    />
-                </form>
-                </Grid>
-                    <Grid item xs={1}>
-                    <IconButton><SendIcon /></IconButton>
-                    </Grid>
-                </Grid>
-
-            </main>
+            { props.children }
         </div>
     );
-}
+};
