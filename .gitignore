@@ -92,5 +92,7 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-# NodeJS temp files
-messinq-backend/package-lock.json
+# package.lock and yarn.lock files should be kept
+# an install environment should be able to be recreated
+# using these files, so removing them would result
+# in the environment not being able to be reproduced.
