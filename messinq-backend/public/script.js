@@ -112,7 +112,7 @@ window.onload = (event) => {
 
                     break;
                 case "client_list":
-					// TODO current user on clientside
+					// TODO exclude current user on clientside
                     var clients = data.data.clients;
                     var clientsOptions = "<option value=''>Select user</option>";
                     clients.forEach(client => {
