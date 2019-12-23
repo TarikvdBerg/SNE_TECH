@@ -64,9 +64,9 @@ export default function SignIn() {
             <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-            Sign in
+            Sign up
             </Typography>
-            <form className={classes.form} noValidate action="http://localhost:3000/login">
+            <form className={classes.form} noValidate action="http://localhost:3000/register">
             <TextField
                 variant="outlined"
                 margin="normal"
@@ -101,17 +101,14 @@ export default function SignIn() {
                 className={classes.submit}
 				formmethod="post"
             >
-                Sign In
+                Register
             </Button>
             <Grid container>
                 <Grid item xs>
-                <Link href="/password" variant="body2">
-                    Forgot password?
-                </Link>
                 </Grid>
                 <Grid item>
-                <Link href="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                <Link href="/signin" variant="body2">
+                    {"Already have an account? Sign In!"}
                 </Link>
                 </Grid>
             </Grid>
