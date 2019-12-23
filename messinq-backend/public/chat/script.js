@@ -1,16 +1,26 @@
-window.onload = (event) => {
-    var username = prompt("Please enter your username to continue");
-    var socket = new WebSocket(`ws://${location.host}/`);
+var myRequest = new XMLHttpRequest();
+myRequest.addEventListener("load", function () {
+	console.log(this.responseText);
+	drawFunctie(this.responseText)
+});
+myRequest.open("GET", "/username-request");
+myRequest.send();
 
-    var clientsList = document.querySelector("#clients");
-    var dialog = document.querySelector("#messages_container");
+
+
+function drawFunctie (username) {
+	console.log(location.host);
+	var socket = new WebSocket(`ws://${location.host}/chat2`);
+
+	var clientsList = document.querySelector("#clients");
+	var dialog = document.querySelector("#messages_container");
 	var usernameGedeelte = document.querySelector("#username_container");
-    var messageForm = document.querySelector("#message_form");
-    var messageText = document.querySelector("#message_text");
-    var messages = {};
-	
-	usernameGedeelte.innerHTML = `<p>Logged in as ` + username + `</p>`;
+	var messageForm = document.querySelector("#message_form");
+	var messageText = document.querySelector("#message_text");
+	var messages = {};
 
+	usernameGedeelte.innerHTML = `<p>Logged in as ` + username + `- <a href="/logout">Logout</a></p> `;
+	
     var updateMessageWindow = () => {
         const selectedUser = clientsList.options[clientsList.selectedIndex].value;
 
