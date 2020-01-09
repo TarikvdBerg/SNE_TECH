@@ -279,29 +279,6 @@ app.get('*', function(req, res){
 	console.log('404 trigger, NOT logged in')
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.listen(3000, function(){
+app.listen(3000, function() {
   console.log('App listening at http://localhost:3000');
 });
