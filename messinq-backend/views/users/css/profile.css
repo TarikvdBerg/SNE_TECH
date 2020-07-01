@@ -1,0 +1,163 @@
+body {
+    background-color: black;
+}
+
+div[id=profile] {
+    background-color: beige;
+    margin-top: -20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin: auto;
+    height: 700px;
+    width: 800px;
+    align-content: center;
+}
+
+h1 {
+    position: absolute;
+    top: -20px;
+    font-size: 50px;
+    font-weight: bold;
+    color: black;
+    width: 300px;
+    padding: none;
+}
+
+h2 {
+    position: absolute;
+    top: 50px;
+}
+
+img {
+    position: absolute;
+    top: 100px;
+    border-style: solid;
+    border-width: 1px;
+    background-color: white;
+}
+
+h2[type=friendlist] {
+    padding-left: 475px;
+    width: 250px;
+    top: 30px;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+}
+
+div[id=friendlist] {
+    margin-top: 100px;
+    margin-left: 302px;
+    bottom: 500px;
+    left: 782px;
+    float: right;
+    width: 400px;
+    height: 573px;
+    background-color: white;
+    border-style: solid;
+    border-right: none;
+    border-width: 2px;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+a[href="/logout"] {
+    float: right;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border: solid;
+    border-width: 2px;
+    border-top: none;
+    border-right: none;
+}
+
+a[href="/chat"] {
+    float: right;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border: solid;
+    border-width: 2px;
+    border-color: black;
+    border-top: none;
+    border-right: none;
+}
+
+h3[id=user] {
+    position: absolute;
+    top: 380px;
+}
+
+p[id=user] {
+    position: absolute;
+    padding-left: 206px;
+    top: 385px;
+}
+
+h3[id=email] {
+    position: absolute;
+    top: 400px;
+}
+
+p[id=email] {
+    position: absolute;
+    padding-left: 206px;
+    top: 405px;
+}
+
+p[type=password1] {
+    position: absolute;
+    top: 450px;
+}
+
+input[type=password1] {
+    position: absolute;
+    top: 465px;
+    margin-left: 206px;
+}
+
+p[type=password2] {
+    position: absolute;
+    top: 480px;
+}
+
+input[type=password2] {
+    position: absolute;
+    top: 495px;
+    margin-left: 206px;
+}
+
+button[name="confirm"] {
+    position: absolute;
+    top: 520px;
+    margin-left: 206px;
+    padding-left: 63px;
+    padding-right: 63px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+button[id=delete_friend] {
+    position: absolute;
+    top: 667px;
+    margin-left: 455px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+button[id=chat] {
+    position: absolute;
+    top: 667px;
+    margin-left: 625px;
+    padding-left: 44px;
+    padding-right: 44px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

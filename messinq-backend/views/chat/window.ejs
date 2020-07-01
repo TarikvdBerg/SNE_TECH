@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
-        <title>MessinQ backend</title>
 
-        <script src="script.js" async></script>
-    </head>
-    <body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>MessinQ backend</title>
+    <link href="/chat/css/windows.css" rel="stylesheet" type="text/css">
+    <script src="script.js" async></script>
+</head>
+
+<body>
+    <div id=chat>
         <h1>MessinQ</h1>
-		<div id="username_container"></div>
+        <p><a href="/logout">Logout</a></p>
+        <p><a href="/profile">profile</a></p>
+        <h2>Logged in as
+            <div id="username_container"></div>
+        </h2>
+
         <select id="clients" name="clients">
             <option value="">Select user</option>
         </select>
+
+        <button id=adduser> Add friend</button>
+        <button id=chat> Chat</button>
+
+
         <form id="message_form">
             <input type="text" id="message_text" placeholder="Enter message...">
             <input type="submit" value="Send">
         </form>
         <div id="messages_container"></div>
-    </body>
+    </div>
+</body>
+
 </html>

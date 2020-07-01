@@ -1,20 +1,35 @@
-<body>
-	<form id="regForm" action="<%= postUrl %>" method="post">
-		<h1>Login</h1>
-		
-		<% if(error){ %>
-			<h4><i class="icon fa fa-ban"></i> <%= error %></h4>
-		<% } %>
-		
-		<div class="tab">
-			<p><input type="text" id="field_username" name="username" value="<% if (newUser!=false) { %><%=	newUser %><% } %>" placeholder="Username" oninput="this.className = ''" id="username" required>
-			<p><input type="password" id="field_password" name="password" value="" placeholder="Password" oninput="this.className = ''" id="password" required>
-		</div>
-		
-		<div style="text-align:center;margin-top:40px;">
-			<input name="submit" type="submit" value="Login">
-		</div>
+<!DOCTYPE HTML>
+<html>
 
-	  <p><a href="/register">Register</a></p>
-	</form>
+<head>
+    <link href="/users/css/login.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <form id="regForm" action="<%= postUrl %>" method="post">
+        <h1>Login</h1>
+
+        <% if(error){ %>
+            <h4><i class="icon fa fa-ban"></i>
+                <%= error %>
+            </h4>
+            <% } %>
+
+                <div class="tab">
+                    <table>
+                        <p>Username: <input type="text" id="field_username" name="username" value="<% if (newUser!=false) { %><%=	newUser %><% } %>" placeholder="Username" oninput="this.className = ''" id="username" required>
+                            <p>Password: <input type="password" id="field_password" name="password" value="" placeholder="Password" oninput="this.className = ''" id="password" required>
+                    </table>
+                </div>
+
+                <div>
+                    <!--style="text-align:center;margin-top:40px;"> -->
+                    <input name="submit" type="submit" value="Login">
+                </div>
+
+                <p><a href="/register">Register here</a></p>
+                <p><a href="/forgotpassword">Forgot your password?</a></p>
+    </form>
 </body>
+
+</html>

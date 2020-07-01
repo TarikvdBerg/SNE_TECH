@@ -1,26 +1,30 @@
 var myRequest = new XMLHttpRequest();
-myRequest.addEventListener("load", function () {
-	console.log(this.responseText);
-	drawFunctie(this.responseText)
+myRequest.addEventListener("load", function() {
+    console.log(this.responseText);
+    drawFunctie(this.responseText)
 });
 myRequest.open("GET", "/username-request");
 myRequest.send();
 
 
 
-function drawFunctie (username) {
-	console.log(location.host);
-	var socket = new WebSocket(`ws://${location.host}/chat2`);
+function drawFunctie(username) {
+    console.log(location.host);
+    var socket = new WebSocket(`ws://${location.host}/chat2`);
 
-	var clientsList = document.querySelector("#clients");
-	var dialog = document.querySelector("#messages_container");
-	var usernameGedeelte = document.querySelector("#username_container");
-	var messageForm = document.querySelector("#message_form");
-	var messageText = document.querySelector("#message_text");
-	var messages = {};
+    var clientsList = document.querySelector("#clients");
+    var dialog = document.querySelector("#messages_container");
+    var usernameGedeelte = document.querySelector("#username_container");
+    var email = document.querySelector("#email_container");
+    var messageForm = document.querySelector("#message_form");
+    var messageText = document.querySelector("#message_text");
+    var messages = {};
 
-	usernameGedeelte.innerHTML = `<p>Logged in as ` + username + `- <a href="/logout">Logout</a></p> `;
-	
+
+    usernameGedeelte.innerHTML = username; // + ` <a href="/logout">Logout</a></p> `;
+    email.innerHTML - email;
+
+
     var updateMessageWindow = () => {
         const selectedUser = clientsList.options[clientsList.selectedIndex].value;
 
@@ -48,16 +52,16 @@ function drawFunctie (username) {
             alert("Please select the user you want to send your message to.");
             return false;
         } else if (recipient === username) {
-			alert("You cannot send a message to yourself");
+            alert("You cannot send a message to yourself");
             return false;
-		}
+        }
 
         socket.send(JSON.stringify({
             event: "message",
             data: {
                 sender: username,
                 recipient: clientsList.options[clientsList.selectedIndex].value,
-                message:  messageText.value,
+                message: messageText.value,
             },
         }));
 
@@ -122,7 +126,7 @@ function drawFunctie (username) {
 
                     break;
                 case "client_list":
-					// TODO current user on clientside
+                    // TODO current user on clientside
                     var clients = data.data.clients;
                     var clientsOptions = "<option value=''>Select user</option>";
                     clients.forEach(client => {

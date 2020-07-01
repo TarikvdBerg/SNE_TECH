@@ -1,0 +1,121 @@
+body {
+    background-color: black;
+}
+
+div[id=chat] {
+    background-color: beige;
+    margin-top: -20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin: auto;
+    height: 700px;
+    width: 800px;
+    align-content: center;
+}
+
+h2 {
+    position: relative;
+    top: 100px;
+}
+
+div[id="username_container"] {
+    position: relative;
+    top: -27px;
+    padding-left: 135px;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+div [class="Dropdown"] {
+    position: absolute;
+}
+
+h1 {
+    position: absolute;
+    top: -20px;
+    font-size: 50px;
+    font-weight: bold;
+    color: black;
+    width: 300px;
+    padding: none;
+}
+
+a[href="/logout"] {
+    float: right;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border: solid;
+    border-width: 2px;
+    border-top: none;
+    border-right: none;
+}
+
+a[href="/profile"] {
+    float: right;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border: solid;
+    border-width: 2px;
+    border-color: black;
+    border-top: none;
+    border-right: none;
+}
+
+select[id=clients] {
+    position: absolute;
+    top: 150px;
+    padding: 10px 50px;
+    margin-bottom: 30px;
+}
+
+button[id=adduser] {
+    position: absolute;
+    top: 158px;
+    /* padding: 10px 15px; */
+    margin-left: 195px;
+}
+
+button[id=chat] {
+    position: absolute;
+    top: 158px;
+    /* padding: 10px 15px; */
+    margin-left: 275px;
+}
+
+form[id=message_form] {
+    position: absolute;
+    border-style: solid;
+    border-width: 2px;
+    border-left: none;
+    border-bottom: none;
+    top: 250px;
+    height: 600px;
+    min-width: 400px;
+    max-width: 800px;
+    background-color: white;
+}
+
+input[type=text] {
+    position: relative;
+    right: 2px;
+    top: 570px;
+    height: 26px;
+    width: 720px;
+    border-width: 2px;
+    font-size: 16px;
+}
+
+input[type=submit] {
+    position: relative;
+    right: 6px;
+    top: 569px;
+    height: 32px;
+    width: 68px;
+    border-width: 2px;
+}
