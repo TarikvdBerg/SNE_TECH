@@ -178,11 +178,38 @@ app.post('/register', function(req, res) {
             Gebruikers_naam: req.body.username,
             Wachtwoordhash: bcrypt.hashSync(req.body.password, 10),
         };
-        if (req.body.email != '' && req.body.username != '' && req.body.password != '') {
+        if (req.body.username != '' && req.body.email != '' && req.body.password != '') {
             console.log([data.Emailadres]);
             console.log([data.Gebruikers_naam]);
             console.log([data.Wachtwoordhash]);
-            // connection.query("SELECT * FROM gebruiker WHERE gebruikers_naam = ? LIMIT 1", [data.Gebruikers_naam], function(err, results) {
+
+
+
+
+            connection.query("SELECT * FROM gebruiker WHERE gebruikers_naam = ? LIMIT 1", [data.Gebruikers_naam], function(err, results) {
+                console.log("registerdebug", results)
+                if (err || results[0] != undefined) {
+                    //console.log("undefined error");
+                    res.render('users/register', {
+                        postUrl: '/register',
+                        // error: 'Gebruikersnaam bestaat al'
+                        error: 'Username already exists'
+                    });
+                } else {
+                    console.log("else undefined debug");
+                    connection.query("INSERT INTO gebruiker set ? ", [data], function(err, results) {
+                        console.log("na db insert", err);
+                        res.render('users/login', {
+                            postUrl: '/login',
+                            error: 'user ' + req.body.username + ' created',
+                            newUser: req.body.username
+                        });
+                    });
+                }
+
+
+            });
+
             connection.query("SELECT * FROM gebruiker WHERE emailadres = ? LIMIT 1", [data.Emailadres], function(err, results) {
 
                 console.log("registerdebug", results)
@@ -191,7 +218,7 @@ app.post('/register', function(req, res) {
                     res.render('users/register', {
                         postUrl: '/register',
                         // error: 'Gebruikersnaam bestaat al'
-                        error: 'Email adres bestaat al'
+                        error: 'Email address already exists'
                     });
                 } else {
                     console.log("else undefined debug");
@@ -199,12 +226,14 @@ app.post('/register', function(req, res) {
                         console.log("na db insert", err);
                         res.render('users/login', {
                             postUrl: '/login',
-                            error: 'Gebruiker ' + req.body.username + ' aangemaakt',
+                            error: 'Gebruiker ' + req.body.username + ' created',
                             newUser: req.body.username
                         });
                     });
                 }
             });
+
+
         } else {
             res.render('users/register', {
                 postUrl: '/register',
@@ -234,13 +263,13 @@ var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var UserInfo = new Schema({
-    Emailadres: { type: String, required: true },
+    Email: { type: String, required: true },
     password: { type: String, required: true }
 }, {
-    collection: 'User'
+    collection: 'Gebruiker'
 });
 
-var User = mongoose.model('User', UserInfo)
+var User = mongoose.model('Gebruiker', UserInfo)
 
 app.post('/forgotpassword', function(req, res, next) {
     var email = req.body.email;
