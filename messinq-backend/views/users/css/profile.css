@@ -146,10 +146,12 @@ button[id=delete_friend] {
     position: absolute;
     top: 667px;
     margin-left: 455px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
     padding-top: 15px;
     padding-bottom: 15px;
+    text-align: center;
+    white-space: nowrap;
 }
 
 button[id=chat] {
@@ -160,4 +162,5 @@ button[id=chat] {
     padding-right: 44px;
     padding-top: 15px;
     padding-bottom: 15px;
+    text-align: center;
 }

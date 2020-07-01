@@ -96,8 +96,7 @@ form[id=message_form] {
     border-bottom: none;
     top: 250px;
     height: 600px;
-    min-width: 400px;
-    max-width: 800px;
+    width: 800px;
     background-color: white;
 }
 
