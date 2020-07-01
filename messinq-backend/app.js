@@ -10,17 +10,14 @@ const dotenv = require('dotenv').config();
 var async = require('async');
 var crypto = require('crypto');
 
-
-
-
-// var dbOptions = {
-// 	connectionLimit : process.env.DB_CONLIMIT,
-// 	host: process.env.DB_HOST,
-// 	user: process.env.DB_USER,
-// 	password: process.env.DB_PASSWORD,
-// 	port: process.env.DB_PORT,
-// 	database: process.env.DB_DATABASE
-// };
+var dbOptions = {
+	connectionLimit : process.env.DB_CONLIMIT,
+	host: process.env.DB_HOST,
+	user: process.env.DB_USER,
+	password: process.env.DB_PASSWORD,
+	port: process.env.DB_PORT,
+	database: process.env.DB_DATABASE
+};
 
 // ## local
 // var dbOptions = {
@@ -33,14 +30,14 @@ var crypto = require('crypto');
 // };
 
 // ## vulkerserver
-var dbOptions = {
-    connectionLimit: '50',
-    host: "vulker.nl",
-    user: 'guus',
-    password: "welkom123",
-    port: '33060',
-    database: 'messinq'
-};
+// var dbOptions = {
+//     connectionLimit: '50',
+//     host: "vulker.nl",
+//     user: 'guus',
+//     password: "welkom123",
+//     port: '33060',
+//     database: 'messinq'
+// };
 
 //console.log(dbOptions);
 var app = express();
