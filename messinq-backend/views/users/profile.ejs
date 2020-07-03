@@ -17,26 +17,32 @@
         <p><a href="/logout">Logout</a></p>
         <p><a href="/chat">chat</a></p>
 
-        <img src="" alt="profile picture" width="200" height="240">
+        <% if(error){ %>
+            <h4><i class="icon fa fa-ban"></i>
+                <%= error %>
+            </h4>
+            <% } %>
 
-        <h2 type=friendlist>Friend list</h2>
-        <div id=friendlist></div>
+                <img src="" alt="profile picture" width="200" height="240">
 
-        <h3 id=user>Username: </h3>
-        <p id=user>Guus</p>
-        <div id="username_container"></div>
+                <h2 type=friendlist>Friend list</h2>
+                <div id=friendlist></div>
 
-        <h3 id=email>Email address: </h3>
-        <p id=email>gustav_druif@hotmail.com</p>
-        <div id="email_container"></div>
+                <h3 id=user>Username: </h3>
+                <p id=user>Guus</p>
+                <div id="username_container"></div>
+
+                <h3 id=email>Email address: </h3>
+                <p id=email>gustav_druif@hotmail.com</p>
+                <div id="email_container"></div>
 
 
-        <p type=password1>Change Password: </p><input type="password1" , name="password" , value='' , placeholder="New Password" , autofocus=true>
-        <p type=password2>Comfirm change Password: </p><input type="password2" , name="confirm" , value="" , placeholder="Confirm Password">
-        <button name="confirm" type="confirm" value="confirm" , placeholder="Confirm">Confirm</button>
+                <p type=password1>Change Password: </p><input type="password1" , name="password" , value='' , placeholder="New Password" , autofocus=true>
+                <p type=password2>Comfirm change Password: </p><input type="password2" , name="confirm" , value="" , placeholder="Confirm Password">
+                <button name="confirm" type="confirm" value="confirm" , placeholder="Confirm">Confirm</button>
 
-        <button id="delete_friend">Delete friend</button>
-        <button id=chat> Chat</button>
+                <button id="delete_friend">Delete friend</button>
+                <button id=chat> Chat</button>
     </div>
 </body>
 

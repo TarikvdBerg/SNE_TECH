@@ -10,14 +10,14 @@ const dotenv = require('dotenv').config();
 var async = require('async');
 var crypto = require('crypto');
 
-var dbOptions = {
-	connectionLimit : process.env.DB_CONLIMIT,
-	host: process.env.DB_HOST,
-	user: process.env.DB_USER,
-	password: process.env.DB_PASSWORD,
-	port: process.env.DB_PORT,
-	database: process.env.DB_DATABASE
-};
+// var dbOptions = {
+// 	connectionLimit : process.env.DB_CONLIMIT,
+// 	host: process.env.DB_HOST,
+// 	user: process.env.DB_USER,
+// 	password: process.env.DB_PASSWORD,
+// 	port: process.env.DB_PORT,
+// 	database: process.env.DB_DATABASE
+// };
 
 // ## local
 // var dbOptions = {
@@ -30,14 +30,14 @@ var dbOptions = {
 // };
 
 // ## vulkerserver
-// var dbOptions = {
-//     connectionLimit: '50',
-//     host: "vulker.nl",
-//     user: 'guus',
-//     password: "welkom123",
-//     port: '33060',
-//     database: 'messinq'
-// };
+var dbOptions = {
+    connectionLimit: '50',
+    host: "vulker.nl",
+    user: 'guus',
+    password: "welkom123",
+    port: '33060',
+    database: 'messinq'
+};
 
 //console.log(dbOptions);
 var app = express();
@@ -82,7 +82,7 @@ app.get('/', function(req, res) {
 app.get('/chat', function(req, res) {
     if (req.session.username) {
         req.getConnection(function(err, connection) {
-            connection.query('SELECT * FROM users', function(err, results) {
+            connection.query('SELECT * FROM user', function(err, results) {
                 res.render('chat/window', {});
             });
         });
@@ -109,34 +109,34 @@ app.get('/login', function(req, res) {
 
 
 app.post('/login', function(req, res) {
-    var Gebruikers_naam = req.body.username;
-    var LokaalWachtwoord = req.body.password;
+    var user_name = req.body.username;
+    var password = req.body.password;
 
     if (req.body.username != '' && req.body.password != '') {
         req.getConnection(function(err, connection) {
-            //console.log(Gebruikers_naam);
-            //console.log(Wachtwoordhash);
-            connection.query('SELECT * FROM gebruiker WHERE gebruikers_naam = ? LIMIT 1', [Gebruikers_naam], function(err, results) {
+            //console.log(user_name);
+            //console.log(passwordhash);
+            connection.query('SELECT * FROM user WHERE user_name = ? LIMIT 1', [user_name], function(err, results) {
                 console.log("User logged in");
                 console.log(results)
                 if (results != undefined && results.length > 0) {
-                    bcrypt.compare(LokaalWachtwoord, results[0].wachtwoordhash, function(err, ress) {
+                    bcrypt.compare(password, results[0].passwordhash, function(err, ress) {
                         if (!ress) {
-                            console.log("login - ress bestaat NIET")
+                            console.log("login - ress does not exist")
                             res.render('users/login', {
                                 postUrl: '/login',
                                 error: 'Invalid username or password.',
                                 newUser: false
                             });
                         } else {
-                            console.log("login - ress bestaat")
-                            req.session.username = results[0].gebruikers_naam;
+                            console.log("login - ress exist")
+                            req.session.username = results[0].user_name;
                             console.log(req.session);
                             res.redirect('/');
                         }
                     });
                 } else {
-                    console.log("login - results is kleiner dan 0")
+                    console.log("login - result is lower than 0")
                     res.render('users/login', {
                         postUrl: '/login',
                         error: 'Invalid username or password.',
@@ -171,19 +171,16 @@ app.get('/register', function(req, res) {
 app.post('/register', function(req, res) {
     req.getConnection(function(err, connection) {
         var data = {
-            Emailadres: req.body.email,
-            Gebruikers_naam: req.body.username,
-            Wachtwoordhash: bcrypt.hashSync(req.body.password, 10),
+            email_address: req.body.email,
+            user_name: req.body.username,
+            passwordhash: bcrypt.hashSync(req.body.password, 10),
         };
         if (req.body.username != '' && req.body.email != '' && req.body.password != '') {
-            console.log([data.Emailadres]);
-            console.log([data.Gebruikers_naam]);
-            console.log([data.Wachtwoordhash]);
+            console.log([data.email_address]);
+            console.log([data.user_name]);
+            console.log([data.passwordhash]);
 
-
-
-
-            connection.query("SELECT * FROM gebruiker WHERE gebruikers_naam = ? LIMIT 1", [data.Gebruikers_naam], function(err, results) {
+            connection.query("SELECT * FROM user WHERE user_name = ? LIMIT 1", [data.user_name], function(err, results) {
                 console.log("registerdebug", results)
                 if (err || results[0] != undefined) {
                     //console.log("undefined error");
@@ -194,7 +191,7 @@ app.post('/register', function(req, res) {
                     });
                 } else {
                     console.log("else undefined debug");
-                    connection.query("INSERT INTO gebruiker set ? ", [data], function(err, results) {
+                    connection.query("INSERT INTO user set ? ", [data], function(err, results) {
                         console.log("na db insert", err);
                         res.render('users/login', {
                             postUrl: '/login',
@@ -207,34 +204,31 @@ app.post('/register', function(req, res) {
 
             });
 
-            connection.query("SELECT * FROM gebruiker WHERE emailadres = ? LIMIT 1", [data.Emailadres], function(err, results) {
-
+            connection.query("SELECT * FROM user WHERE email_address = ? LIMIT 1", [data.email_address], function(err, results) {
                 console.log("registerdebug", results)
                 if (err || results[0] != undefined) {
                     //console.log("undefined error");
                     res.render('users/register', {
                         postUrl: '/register',
-                        // error: 'Gebruikersnaam bestaat al'
                         error: 'Email address already exists'
                     });
                 } else {
                     console.log("else undefined debug");
-                    connection.query("INSERT INTO gebruiker set ? ", [data], function(err, results) {
+                    connection.query("INSERT INTO user set ? ", [data], function(err, results) {
                         console.log("na db insert", err);
                         res.render('users/login', {
                             postUrl: '/login',
-                            error: 'Gebruiker ' + req.body.username + ' created',
-                            newUser: req.body.username
+                            error: 'email ' + req.body.email + ' created',
+                            newUser: req.body.email
                         });
                     });
                 }
             });
 
-
         } else {
             res.render('users/register', {
                 postUrl: '/register',
-                error: 'Vul alle velden in aub'
+                error: 'Please fill in all the fields'
             });
         }
     });
@@ -263,10 +257,10 @@ var UserInfo = new Schema({
     Email: { type: String, required: true },
     password: { type: String, required: true }
 }, {
-    collection: 'Gebruiker'
+    collection: 'user'
 });
 
-var User = mongoose.model('Gebruiker', UserInfo)
+var User = mongoose.model('user', UserInfo)
 
 app.post('/forgotpassword', function(req, res, next) {
     var email = req.body.email;
